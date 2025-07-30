@@ -1,0 +1,143 @@
+---
+title: "HW 1 -- R STARTER"
+format:
+  html:
+    embed-resources: true
+    toc: true
+    toc-location: left
+    df-print: kable
+execute: 
+  warning: false
+  message: false
+---
+
+## Simulation 1 
+
+### a) Population distribution
+
+Let $X \sim \text{Gamma}(\alpha = 4, \beta = 1/2)$.
+
+```{r}
+x <- seq(from = 0, to = 100, by = 0.01)
+plot(x = x, y = dgamma(x, shape = 4, rate = 1/2), type = "l", xlab = "x", ylab = "f(x)", main = "Gamma population distribution")
+
+```
+
+### b and c) Generate random samples and calculate statistic
+
+Let $Y = \text{median}\{X_1, \ldots, X_{30}\}$.
+
+```{r}
+# initialize our holding vector again
+x_median <- c()
+for (i in 1:10000) {
+  
+  # i is the index, the for loop runs for each value of the index
+  
+  # generate data
+  data_sample <- rgamma(n = 30, shape = 4, rate = 1/2)
+  
+  # record sample median
+  x_median[i] <- median(data_sample)
+  
+  # once both of these are done, the for loop goes to the next index value and performs the loop again
+}
+
+```
+
+### d) Plot simulated sampling distribution of $Y = \text{median}\{X_1, \ldots, X_{30}\}$
+
+```{r}
+# plot sample median
+hist(x = x_median, freq = FALSE, xlab = "Sample median", main = "Sampling distribution from Gamma population")
+
+```
+
+Sampling distribution seems to be centered at the population median.
+
+### e) Calculate the mean and standard deviation of the simulated sampling distribution
+
+Calculate $\hat{\mu}_Y$ and $\hat{\sigma}_Y$.
+
+- We don't know the theoretical expected value and variance of the statistic, so can't compare the simulated results to anything.
+
+```{r}
+s = sd(x_median)
+m = mean(x_median) 
+```
+
+### f) Estimate the probability the sample statistic is within two standard deviations of its mean
+
+Calculate $P(\hat{\mu}_Y - 2 \hat{\sigma}_Y < Y < \hat{\mu}_Y + 2 \hat{\sigma}_Y)$.
+
+```{r}
+# P(X < 1.5)
+mean(x_median < m+2*s)-mean(x_median < m-2*s)
+
+```
+
+## Simulation 2
+
+### a) Population distribution
+
+Let $X \sim \text{??}(??)$.
+
+```{r}
+x <- seq(from = 0, to = 25, by = 0.01)
+plot(x = x, y = dchisq(x, df=5, ncp=0, log=FALSE), type = "l", xlab = "x", ylab = "f(x)", main = "ChiSquare population distribution")
+
+```
+
+### b and c) Generate random samples and calculate statistic
+
+Let $Y = \text{??}\{X_1, \ldots, X_{30}\}$.
+
+```{r}
+# initialize our holding vector again
+x_median <- c()
+for (i in 1:10000) {
+  
+  # i is the index, the for loop runs for each value of the index
+  
+  # generate data
+  data_sample <- rchisq(n=30, df=5, ncp=0)
+  
+  # record sample median
+  x_median[i] <- median(data_sample)
+  
+  # once both of these are done, the for loop goes to the next index value and performs the loop again
+}
+
+
+```
+
+### d) Plot simulated sampling distribution of $Y = \text{max}\{X_1, \ldots, X_{30}\}$
+
+```{r}
+# plot sample median
+hist(x = x_median, freq = FALSE, xlab = "Sample median", main = "Sampling distribution from ChiSquare population")
+
+
+```
+
+### e) Calculate the mean and standard deviation of the simulated sampling distribution
+
+Calculate $\hat{\mu}_Y$ and $\hat{\sigma}_Y$.
+
+```{r}
+s = sd(x_median)
+m = mean(x_median) 
+
+
+```
+
+### f) Estimate the probability the sample statistic is within two standard deviations of its mean
+
+Calculate $P(\hat{\mu}_Y - 2 \hat{\sigma}_Y < Y < \hat{\mu}_Y + 2 \hat{\sigma}_Y)$.
+
+```{r}
+# P(X < 1.5)
+mean(x_median < m+2*s)-mean(x_median < m-2*s)
+
+
+```
