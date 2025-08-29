@@ -1,0 +1,27 @@
+# Treat Quarto and R Markdown as R
+*.qmd linguist-language=R
+*.Rmd linguist-language=R
+
+# Standard R scripts
+*.R linguist-detectable=true
+*.r linguist-detectable=true
+
+# Count R notebooks as R (if you use them)
+*.ipynb linguist-language=R
+
+# Exclude data & outputs from skewing stats
+data/** linguist-detectable=false
+datasets/** linguist-detectable=false
+*.csv linguist-detectable=false
+*.tsv linguist-detectable=false
+*.xlsx linguist-detectable=false
+*.xls linguist-detectable=false
+*.parquet linguist-detectable=false
+*.feather linguist-detectable=false
+
+# Ignore figures
+*.png linguist-detectable=false
+*.jpg linguist-detectable=false
+*.jpeg linguist-detectable=false
+*.svg linguist-detectable=false
+*.pdf linguist-detectable=false
